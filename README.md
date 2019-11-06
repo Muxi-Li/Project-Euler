@@ -1,2 +1,2 @@
-# Project-Euler
- Project-Euler刷题题解
+## 写在前面
+最近开始用python在Project-Eluer网站上刷题，想把每道题的解法记录下来，也是一种自我提升。
