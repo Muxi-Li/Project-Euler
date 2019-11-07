@@ -5,4 +5,4 @@
 
 ok，现在开始记录每一道题，总结每道题的各种解法。
 
-[Problem 001-Multiples of 3 and 5](/markdownFiles/Problem 001-Multiples of 3 and 5.md)
+[Problem 001-Multiples of 3 and 5](./markdownFiles/Problem 001-Multiples of 3 and 5.md)
