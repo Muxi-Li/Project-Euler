@@ -5,10 +5,8 @@
 
 ok，现在开始记录每一道题，总结每道题的各种解法。
 
+
 ## Problem 001-Multiples of 3 and 5
-
-[Problem001-Multiples of 3 and 5](Problem001-Multiples of 3 and 5)
-
 #### 问题描述
 
 >If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
