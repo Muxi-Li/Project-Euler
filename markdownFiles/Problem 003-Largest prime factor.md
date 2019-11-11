@@ -30,3 +30,87 @@ prime factors也就是质因数，比如13195的质因数是5，7，13和29，�
 假设题目中的数字为`n`。
 
 既然要求最大的质因数，那么总该找出所有的质因数，然后比较才能得出最大的。
+
+
+
+---
+
+#### 我的解法
+
+```python
+import math
+def getMaxPrimeFac(n):
+    """
+    参数：
+        n：目标数字
+    返回：该数字的最大质因数
+    """
+    # 存放质因数的列表
+    list_fac = []
+    a = 2
+    while a <= n:
+        if n % a == 0:
+            list_fac.append(a)
+            print(a)
+            n /= a
+        else:
+            a += 1
+    return max(list_fac)
+def main():
+    # 主函数
+    n = 600851475143
+    max_pri_fac = getMaxPrimeFac(n)
+    print(max_pri_fac)
+if __name__ == "__main__":
+    # 主进程
+    main()
+
+```
+
+#### 官方解法
+
+```python
+# Python3 code to find largest prime 
+# factor of number 
+import math 
+  
+# A function to find largest prime factor 
+def maxPrimeFactors (n): 
+      
+    # Initialize the maximum prime factor 
+    # variable with the lowest one 
+    maxPrime = -1
+      
+    # Print the number of 2s that divide n 
+    while n % 2 == 0: 
+        maxPrime = 2
+        n >>= 1     # equivalent to n /= 2 
+          
+    # n must be odd at this point,  
+    # thus skip the even numbers and  
+    # iterate only for odd integers 
+    for i in range(3, int(math.sqrt(n)) + 1, 2): 
+        while n % i == 0: 
+            maxPrime = i 
+            n = n / i 
+      
+    # This condition is to handle the  
+    # case when n is a prime number  
+    # greater than 2 
+    if n > 2: 
+        maxPrime = n 
+      
+    return int(maxPrime) 
+  
+# Driver code to test above function 
+n = 15
+print(maxPrimeFactors(n)) 
+  
+n = 25698751364526
+print(maxPrimeFactors(n)) 
+  
+# This code is contributed by "Sharad_Bhardwaj". 
+```
+
+代码地址：[GeeksforGeeks]( https://www.geeksforgeeks.org/python-program-for-find-largest-prime-factor-of-a-number/ )
+
