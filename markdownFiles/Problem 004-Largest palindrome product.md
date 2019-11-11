@@ -32,12 +32,16 @@
 
 #### 我的解法
 
+* 怎么判断一个数是不是回文数？
+
+我的做法是先将数值转换成字符串类型，然后将字符串转换成列表，将列表倒序输出，用新的的变量接收这个倒序的列表，然后看它们是否相等，如果相等，说明是这个数是回文数，如果不相等，说明不是回文数。
+
 ```python
-def pal_jud(num):
+def isPalindrome (n):
     """
     功能：判断是否是回文数
     """
-    str_num = str(num)
+    str_num = str(n)
     list_num = list(str_num)
     rev_list_num = list_num[::-1]
     # rev_list_num = list_num[x in list_num ]
@@ -45,33 +49,61 @@ def pal_jud(num):
         return True
     else:
         return False
-def pal():
+```
+
+* 怎么得到回文数？
+
+一开始我是设置两个变量`m`，`n`，初始值都是100，然后设置变量`num`接收它们的乘积，首先`m`不变，`n`递增1，直到`n`到1000为止，如果`n`等于1000，那么`m`增1，这样下去循环直到`m`也到1000，整个循环结束，这样就得到了三位数乘积的所有回文数。
+
+* 完整代码
+
+```python
+def isPalindrome (n):
     """
-    功能：返回最大的回文数
+    功能：判断是否是回文数
+    """
+    str_num = str(n)
+    list_num = list(str_num)
+    rev_list_num = list_num[::-1]
+    if list_num == rev_list_num:
+        return True
+    return False
+def getMaxPalindrome():
+    """
+    返回：返回三位乘积中最大的回文数
     """
     m = n = 100
+    # 存放回文数的列表
     list_pal = []
     while m < 1000:
         num = m * n
         # 调用判断回文函数
-        if pal_jud(num):
-            list_pal.append(num)
-            # print(num)
-        if n < 1000:
+        if isPalindrome(num):
+            list_pal.append([m,n,num])
+        if n < 1000 and n != 999:
             n += 1
         else:
             m += 1
             n = m
-    return max(list_pal)
+            
+    # 按list_pal每个元素列表中的第三个元素降序排列，第一个列表元素就包含最大回文数[913, 993, 906609]
+    list1 = sorted(list_pal,key=lambda x: x[2],reverse=True)
+    return list1[0]
 
 def main():
     # 主函数
     # 1.调用回文函数
-    max_pal = pal()
+    max_pal = getMaxPalindrome()
     print("最大回文数：{}".format(max_pal))
 if __name__ == '__main__':
     # 主进程
     main()
+```
+
+返回结果：
+
+```python
+[913, 993, 906609]
 ```
 
 
