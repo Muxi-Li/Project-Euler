@@ -113,4 +113,3 @@ print(maxPrimeFactors(n))
 ```
 
 代码地址：[GeeksforGeeks]( https://www.geeksforgeeks.org/python-program-for-find-largest-prime-factor-of-a-number/ )
-
