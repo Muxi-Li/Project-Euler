@@ -32,9 +32,21 @@
 
 #### 我的解法
 
-* 怎么判断一个数是不是回文数？
+* 怎么才能在三位乘积中循环不漏掉一个回文数呢？
 
-我的做法是先将数值转换成字符串类型，然后将字符串转换成列表，将列表倒序输出，用新的的变量接收这个倒序的列表，然后看它们是否相等，如果相等，说明是这个数是回文数，如果不相等，说明不是回文数。
+<img src="C:\Users\蔡\AppData\Roaming\Typora\typora-user-images\1574066189962.png" alt="1574066189962" style="zoom: 67%;" />
+
+也就是对于每一个m值，都要从m到999循环一遍。
+
+* 怎么判断一个数是不是回文数呢？
+
+这里介绍两种简单方法。
+
+1. 利用双指针
+
+首先将两个三位数的乘积转换成字符串类型，然后设置两个类似c语言的指针，指向头尾，同时向中间移动，如果两个指针指向同一个元素之前都相等，那么这个数就是回文数。
+
+<img src="C:\Users\蔡\AppData\Roaming\Typora\typora-user-images\1574066612819.png" alt="1574066612819" style="zoom:50%;" />
 
 ```python
 def isPalindrome (n):
@@ -42,20 +54,20 @@ def isPalindrome (n):
     功能：判断是否是回文数
     """
     str_num = str(n)
-    list_num = list(str_num)
-    rev_list_num = list_num[::-1]
-    # rev_list_num = list_num[x in list_num ]
-    if list_num == rev_list_num:
-        return True
-    else:
-        return False
+	i = 0
+    j = len(str_num) - 1
+    while i < j:
+        if str_num[i] == str_num[j]:
+            i += 1
+            j -= 1
+        else:
+            return False
+    return True
 ```
 
-* 怎么得到回文数？
+2. 利用字符串切片
 
-一开始我是设置两个变量`m`，`n`，初始值都是100，然后设置变量`num`接收它们的乘积，首先`m`不变，`n`递增1，直到`n`到1000为止，如果`n`等于1000，那么`m`增1，这样下去循环直到`m`也到1000，整个循环结束，这样就得到了三位数乘积的所有回文数。
-
-* 完整代码
+在将数值转换成字符串的基础上，可以利用字符串的切片操作倒序生成一个新的字符串，如果两个字符串相等，那么这个数就是回文数。
 
 ```python
 def isPalindrome (n):
@@ -63,9 +75,23 @@ def isPalindrome (n):
     功能：判断是否是回文数
     """
     str_num = str(n)
-    list_num = list(str_num)
-    rev_list_num = list_num[::-1]
-    if list_num == rev_list_num:
+    rev_num = str_num[::-1]
+    if str_num == rev_num:
+        return True
+    return False
+```
+
+* 完整代码如下：
+
+```python
+def isPalindrome (n):
+    """
+    :type n:int
+    功能：判断是否是回文数
+    """
+    str_num = str(n)
+    rev_num = str_num[::-1]
+    if str_num == rev_num:
         return True
     return False
 def getMaxPalindrome():
@@ -106,15 +132,52 @@ if __name__ == '__main__':
 [913, 993, 906609]
 ```
 
-
-
-
-
-
-
 ---
 
 #### 官方解析
 
+前面的程序是遍历所有的三位数的乘积，从中找到最大的回文数，能不能改进使遍历的数目减少呢？
 
+上面是从100开始的，那么从999开始查找是不是更快的找到最大的回文数呢？
+
+<img src="C:\Users\蔡\AppData\Roaming\Typora\typora-user-images\1574073691253.png" alt="1574073691253" style="zoom:67%;" />
+
+我们以中间m = 566为例进行分析，n在每个循环中都是从999开始的，保证每次都能找到每个m对应的最大回文数，一旦在某个m的循环中发现回文数，即可跳出循环，进行下一个m的循环。
+
+```python
+def isPalindrome (n):
+    """
+    功能：判断是否是回文数
+    """
+    str_num = str(n)
+    rev_num = str_num[::-1]
+    if str_num == rev_num:
+        return True
+    return False
+def getMaxPalindrome():
+    """
+    返回：返回三位乘积中最大的回文数
+    """
+    m = 999
+    maxPal = 0
+    while m >= 100:
+        n = 999
+        while n >= m:
+            if m*n < maxPal:
+                break
+            if isPalindrome(m*n):
+                maxPal = m * n
+            n -= 1
+        m -= 1
+    return maxPal
+
+def main():
+    # 主函数
+    # 1.调用回文函数
+    max_pal = getMaxPalindrome()
+    print("最大回文数：{}".format(max_pal))
+if __name__ == '__main__':
+    # 主进程
+    main()
+```
 
