@@ -9,3 +9,4 @@ ok，现在开始记录每一道题，总结每道题的各种解法。
 * [Problem 002-Even Fibonacci numbers](https://github.com/Muxi-Li/Project-Euler/blob/master/markdownFiles/Problem%20002-Even%20Fibonacci%20numbers.md)
 * [Problem 003-Largest prime factor](https://github.com/Muxi-Li/Project-Euler/blob/master/markdownFiles/Problem%20003-Largest%20prime%20factor.md)
 * [Problem 004-Largest palindrome product](https://github.com/Muxi-Li/Project-Euler/blob/master/markdownFiles/Problem%20004-Largest%20palindrome%20product.md)
+* [Problem 005-Smallest multiple](https://github.com/Muxi-Li/Project-Euler/blob/master/markdownFiles/Problem%20005-Smallest%20multiple.md)
