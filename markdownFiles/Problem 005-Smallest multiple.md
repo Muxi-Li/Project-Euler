@@ -171,7 +171,84 @@ if __name__ == "__main__":
 
 把11到20的每个数分解质因数，例如：11 = 1×11,12 = 2^2×3,13 = 1×13,14 = 2×7,15 = 3×5,16 = 2^4,17 = 1×17,18 = 2×3^2,19 = 1×19,20 = 2^2×5，这样的话，包含的质数有2,3,5,7,11,13,17,19，也就是11到20的最小公倍数分解成最小公倍数后肯定是它们。这样的话，要求出11到20的最小公倍数，只需找出每个质数出现的最大幂，然后把它们相乘即可。本题可以这样求：最小公倍数 = 2^4×3^2×5×7×11×13×17×19，最后答案是：` 232792560 `。
 
-所以现在的问题变为怎么求出11到20的质因数。
+所以现在问题分解为：
+
+1. 将11到20的每个数分解质因数。
+2. 找出每个质因数出现的最大幂指数。
+3. 所有质因数的最大次幂的乘积。
+
+<img src="C:\Users\蔡\AppData\Roaming\Typora\typora-user-images\1574651413712.png" alt="1574651413712" style="zoom:67%;" />
+
+```python
+import math
+def getPrimeFactors(n):
+    """
+    :type n: int
+    :type return:list
+    功能：将n分解质因数
+    """
+    i = 2
+    # 存放质因数的列表
+    primeFactor = []
+    # 存放幂指数的列表
+    exponent = []
+    while i <= n:
+        # 计数变量
+        count = 0
+        # 是否整除标志
+        divided = False
+        while n % i == 0:
+            divided = True
+            count += 1
+            n /= i
+        if divided:             # 如果i是n的质因数，那么将i和幂指数count存入相应列表
+            primeFactor.append(i)
+            exponent.append(count)
+        i += 1
+    return primeFactor,exponent
+def f(p,e, primeFactor, exponent):
+    """
+    :type p:list
+    :type e:list
+    :type primeFactor:list
+    :type exponent:list
+    :type return:list
+    功能：将p中的元素存入primeFactor中，前提是primeFactor中没有该元素。如果primeFactor中存在该元素，判断幂指数是不是最大。
+    """
+    for i,j in zip(p,e):
+        if i not in primeFactor:
+            primeFactor.append(i)
+            exponent.append(j)
+        else:
+            # 判断primeFactor中的幂指数是不是最大
+            e = exponent[primeFactor.index(i)]
+            exponent[primeFactor.index(i)] = j if j >= e else e
+    return primeFactor,exponent
+def cal(a,b):
+    return math.pow(a,b)
+def main():
+    number = [x for x in range(11, 21)]
+    # 存放最终质因数的列表
+    primeFactor = []
+    # 存放最终幂指数的列表
+    exponent = []
+    for i in number:
+        # 分解质因数
+        p, e = getPrimeFactors(i)
+        # 如果p中的质因数已经在primeFactor中存在，则判断exponent中的幂指数是不是最大
+        primeFactor, exponent = f(p,e, primeFactor, exponent)
+	# 计算两个列表中对应位置的元素的幂运算
+    list1 = map(cal,primeFactor,exponent)
+    result = 1
+    # 将所有的幂运算结果进行乘积运算
+    for i in list1:
+        result *= i
+    print(result)
+if __name__ == '__main__':
+    main()
+```
+
+个人怎么感觉这种解法分析挺简单，写起来还略显复杂，可能自己太菜了。
 
 #### 官方解析
 
