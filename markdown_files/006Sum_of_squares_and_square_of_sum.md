@@ -71,7 +71,7 @@ if __name__ == "__main__":
     main()
 ```
 
-等差数列的公式应该都懂，平方和公式百度都有，证明过程也有，详见[平方和公式]([https://baike.baidu.com/item/%E5%B9%B3%E6%96%B9%E5%92%8C%E5%85%AC%E5%BC%8F](https://baike.baidu.com/item/平方和公式))
+等差数列的公式应该都懂，平方和公式百度都有，证明过程也有，详见[平方和公式](https://baike.baidu.com/item/平方和公式)
 
 
 
