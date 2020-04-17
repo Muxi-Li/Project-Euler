@@ -8,3 +8,5 @@
 * [Problem 003-Largest prime factor](./markdown_files/003Largest_prime_factor.md)
 * [Problem 004-Largest palindrome product](./markdown_files/004_Largest_palindrome_product.md)
 * [Problem 005-Smallest multiple](./markdown_files/005_Smallest_multiple.md)
+* [Problem 006-Sum of squares and square of sum](./markdown_files/006Sum_of_squares_and_square_of_sum.md)
+
